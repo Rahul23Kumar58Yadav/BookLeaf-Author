@@ -1,0 +1,43 @@
+@layer components {
+  .btn {
+    --_bg: var(--accent);
+    --_fg: var(--on-accent);
+    --_bd: transparent;
+    --_pad-y: 0.55em;
+    --_pad-x: 1em;
+
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+    padding: var(--_pad-y) var(--_pad-x);
+    background: var(--_bg); color: var(--_fg);
+    border: 1px solid var(--_bd); border-radius: var(--radius-s);
+    font-weight: 600; font-size: var(--step-0); line-height: 1.2;
+    text-decoration: none; white-space: nowrap;
+    transition: background var(--dur) var(--ease-out), translate var(--dur) var(--ease-out), box-shadow var(--dur);
+
+    &:hover:not(:disabled, [aria-disabled="true"]) {
+      --_bg: color-mix(in oklab, var(--accent) 88%, var(--text));
+    }
+    &:active:not(:disabled) { translate: 0 1px; }
+    &:disabled, &[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+
+    /* Variants only reassign the private tokens, so states above stay shared */
+    &[data-variant="secondary"] {
+      --_bg: var(--surface); --_fg: var(--text); --_bd: var(--border);
+      &:hover:not(:disabled) { --_bg: var(--surface-2); }
+    }
+    &[data-variant="ghost"] {
+      --_bg: transparent; --_fg: var(--text-dim);
+      &:hover:not(:disabled) { --_bg: var(--surface-2); --_fg: var(--text); }
+    }
+    &[data-variant="danger"] {
+      --_bg: var(--danger); --_fg: #fff;
+      &:hover:not(:disabled) { --_bg: color-mix(in oklab, var(--danger) 85%, black); }
+    }
+
+    &[data-size="sm"] { --_pad-y: 0.35em; --_pad-x: 0.75em; font-size: var(--step--1); }
+    &[data-size="icon"] { --_pad-y: 0.5em; --_pad-x: 0.5em; }
+
+    /* Loading keeps the label in flow (invisible-ish) to preserve width */
+    &[data-loading] .btn__label { opacity: 0.7; }
+  }
+}

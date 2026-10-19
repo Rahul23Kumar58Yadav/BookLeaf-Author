@@ -1,0 +1,25 @@
+@layer components {
+  .badge {
+    --_c: var(--text-dim);
+    display: inline-flex; align-items: center; gap: 0.4em;
+    padding: 0.15em 0.65em;
+    border-radius: 999px;
+    font-size: var(--step--1); font-weight: 600; line-height: 1.5;
+    color: var(--_c);
+    /* One tone color drives text, tint and ring via color-mix: no per-tone background hexes */
+    background: color-mix(in oklab, var(--_c) 12%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--_c) 28%, transparent);
+
+    &[data-dot]::before {
+      content: ""; inline-size: 0.5em; block-size: 0.5em; border-radius: 50%; background: currentColor;
+    }
+    &[data-tone="info"]     { --_c: var(--accent); }
+    &[data-tone="success"]  { --_c: var(--success); }
+    &[data-tone="warning"]  { --_c: var(--warning); }
+    &[data-tone="danger"]   { --_c: var(--danger); }
+    &[data-tone="critical"] {
+      --_c: var(--danger);
+      background: var(--danger); color: #fff; box-shadow: none;
+    }
+  }
+}

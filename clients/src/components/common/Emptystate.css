@@ -1,0 +1,25 @@
+@layer components {
+  .empty {
+    container: empty / inline-size; /* reacts to the space it's given, not the viewport */
+    display: grid; justify-items: center; gap: var(--space-4);
+    padding: var(--space-6) var(--space-4); text-align: center;
+    border: 1px dashed var(--border); border-radius: var(--radius-m);
+    background: color-mix(in oklab, var(--surface) 60%, transparent);
+
+    .empty__icon {
+      display: grid; place-items: center; inline-size: 3.5rem; block-size: 3.5rem;
+      border-radius: 50%; color: var(--accent);
+      background: color-mix(in oklab, var(--accent) 12%, transparent);
+    }
+    .empty__text { display: grid; gap: var(--space-2); justify-items: center; }
+    .empty__text p { color: var(--text-dim); }
+  }
+
+  /* Wide containers (e.g. a full table area) switch to a horizontal arrangement */
+  @container empty (min-width: 40rem) {
+    .empty {
+      grid-auto-flow: column; justify-content: center; text-align: start; gap: var(--space-5);
+      .empty__text { justify-items: start; }
+    }
+  }
+}
