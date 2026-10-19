@@ -1,0 +1,57 @@
+@layer components {
+  .book {
+    /* Each card is its own container: layout follows card width, not the viewport */
+    container: book / inline-size;
+    display: grid; gap: var(--space-4); padding: var(--space-5);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-m);
+    border-inline-start: 4px solid var(--amber-500);
+
+    &[data-live] { border-inline-start-color: var(--leaf-500); }
+
+    .book__head {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3);
+      flex-wrap: wrap;
+      .book__genre { color: var(--text-dim); font-size: var(--step--1); }
+    }
+
+    .book__body { display: grid; gap: var(--space-5); }
+
+    .book__meta {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: var(--space-3) var(--space-4);
+      dt { font-size: var(--step--1); color: var(--text-dim); }
+      dd { font-weight: 600; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+      .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: var(--step--1); font-weight: 500; }
+    }
+
+    .book__section {
+      display: grid; gap: var(--space-3);
+      h3 { font-family: var(--font-ui); font-size: var(--step-0); font-weight: 600; color: var(--text-dim); }
+    }
+    .book__muted { font-size: var(--step--1); color: var(--text-dim); }
+
+    .book__foot {
+      display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3);
+      padding-block-start: var(--space-4); border-block-start: 1px solid var(--border);
+    }
+    .book__foot-label { font-size: var(--step--1); color: var(--text-dim); }
+
+    .chips {
+      list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2);
+      li {
+        padding: 0.15em 0.7em; border-radius: var(--radius-s); font-size: var(--step--1);
+        background: var(--surface-2); border: 1px solid var(--border);
+      }
+    }
+  }
+
+  /* Wide card: details left, royalties/progress right */
+  @container book (min-width: 46rem) {
+    .book__body { grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1.2fr); align-items: start; }
+    .book__meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  /* Narrow card: stack royalty figures tighter */
+  @container book (max-width: 24rem) {
+    .royalty__figures { grid-template-columns: 1fr 1fr; }
+  }
+}

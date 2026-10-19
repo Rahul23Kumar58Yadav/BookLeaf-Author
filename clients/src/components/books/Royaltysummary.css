@@ -1,0 +1,35 @@
+@layer components {
+  .royalty {
+    display: grid; gap: var(--space-3);
+
+    .royalty__figures {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3);
+      dt { font-size: var(--step--1); color: var(--text-dim); }
+      dd {
+        font-family: var(--font-display); font-size: var(--step-1); font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        &[data-tone="paid"] { color: var(--success); }
+        &[data-tone="pending"] { color: var(--warning); }
+      }
+    }
+
+    .royalty__bar {
+      display: flex; block-size: 0.5rem; overflow: hidden; border-radius: 999px;
+      background: var(--surface-2);
+    }
+    .royalty__seg {
+      /* --paid / --pending are percentages set inline; calc() turns them into widths */
+      inline-size: calc(var(--paid) * 1%);
+      background: var(--success);
+      transition: inline-size 700ms var(--ease-out);
+      @starting-style { inline-size: 0; } /* grows in once on first render */
+
+      &[data-tone="pending"] {
+        inline-size: calc(var(--pending) * 1%);
+        background: var(--amber-500);
+      }
+    }
+
+    .royalty__note { font-size: var(--step--1); color: var(--text-dim); max-inline-size: 60ch; }
+  }
+}
