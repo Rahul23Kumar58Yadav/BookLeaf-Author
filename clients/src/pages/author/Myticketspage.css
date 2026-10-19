@@ -1,0 +1,10 @@
+@layer components {
+  .tickets-page {
+    display: grid; gap: var(--space-4); max-inline-size: 52rem;
+
+    .tickets-page__bar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3);
+    }
+    .tickets-page__list { list-style: none; padding: 0; display: grid; gap: var(--space-3); }
+  }
+}

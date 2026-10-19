@@ -1,0 +1,20 @@
+@layer components {
+  .tdetail {
+    display: grid; gap: var(--space-4); max-inline-size: 48rem;
+
+    .tdetail__back { color: var(--text-dim); text-decoration: none; inline-size: fit-content; &:hover { color: var(--text); } }
+
+    .tdetail__flash {
+      padding: var(--space-3) var(--space-4); border-radius: var(--radius-s); font-size: var(--step--1);
+      color: var(--success); background: color-mix(in oklab, var(--success) 12%, transparent);
+      border: 1px solid color-mix(in oklab, var(--success) 30%, transparent);
+    }
+
+    .tdetail__head {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3);
+      h2 { overflow-wrap: anywhere; }
+    }
+    .tdetail__meta, .tdetail__hint { font-size: var(--step--1); color: var(--text-dim); }
+
+  }
+}

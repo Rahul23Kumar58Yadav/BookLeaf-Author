@@ -1,0 +1,11 @@
+@layer components {
+  .newticket {
+    display: grid; gap: var(--space-4); max-inline-size: 42rem;
+
+    .newticket__intro { color: var(--text-dim); a { color: var(--accent); } }
+    .newticket__notice {
+      padding: var(--space-3) var(--space-4); font-size: var(--step--1); color: var(--text-dim);
+      background: var(--surface-2); border-radius: var(--radius-s);
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@layer components {
+  .trow {
+    display: grid; gap: var(--space-2); padding: var(--space-4) var(--space-5);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-m);
+    color: inherit; text-decoration: none;
+    transition: border-color var(--dur), background var(--dur);
+
+    &:hover { border-color: var(--accent); background: color-mix(in oklab, var(--accent) 4%, var(--surface)); }
+    &[data-replied] { border-inline-start: 4px solid var(--leaf-500); }
+
+    .trow__top {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3);
+      h3 { font-family: var(--font-ui); font-size: var(--step-0); font-weight: 600; overflow-wrap: anywhere; }
+      .badge { flex-shrink: 0; }
+    }
+    .trow__meta {
+      display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4);
+      font-size: var(--step--1); color: var(--text-dim);
+    }
+    .trow__reply { font-size: var(--step--1); font-weight: 600; color: var(--success); }
+    .trow__wait  { font-size: var(--step--1); color: var(--text-dim); }
+  }
+}
