@@ -1,0 +1,40 @@
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; }
+  img, svg { display: block; max-inline-size: 100%; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :where(button) { cursor: pointer; }
+  :where(a) { color: inherit; }
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
+  body {
+    min-block-size: 100dvh;
+    background: var(--bg);
+    color: var(--text);
+    font: var(--step-0) / 1.55 var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; }
+  h1 { font-size: var(--step-2); }
+  h2 { font-size: var(--step-1); }
+  p  { text-wrap: pretty; max-inline-size: 70ch; }
+
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  ::selection { background: color-mix(in oklab, var(--accent) 30%, transparent); }
+
+  .visually-hidden {
+    position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+/* Design tokens. Layer order is declared once in index.css. */
+@layer tokens {
+  :root {
+    color-scheme: light dark;
+
+    /* Brand: ink blue + leaf green, taken from BookLeaf's own palette */
+    --ink-900: #0f2234;
+    --ink-700: #1b5577;
+    --leaf-600: #2f7d5b;
+    --leaf-500: #3d9a72;
+    --amber-500: #d99a1e;
+    --rose-600: #c4414f;
+
+    /* Semantic surfaces: light-dark() follows color-scheme, so one declaration serves both themes */
+    --bg:        light-dark(#f4f7f6, #0d1822);
+    --surface:   light-dark(#ffffff, #14232f);
+    --surface-2: light-dark(#eaf0ee, #1b2d3b);
+    --border:    light-dark(#d3ddd9, #2a3f4f);
+    --text:      light-dark(#14263a, #e6eef2);
+    --text-dim:  light-dark(#4f6272, #9db0bd);
+    --accent:    light-dark(var(--ink-700), #6fb7de);
+    --on-accent: light-dark(#ffffff, #0d1822);
+    --success:   light-dark(var(--leaf-600), #5cc79a);
+    --warning:   light-dark(#9a6a00, var(--amber-500));
+    --danger:    light-dark(var(--rose-600), #ef7d89);
+    --focus:     light-dark(#0b6bcb, #8cc8ff);
+
+    /* Type */
+    --font-display: "Source Serif 4", Georgia, serif;
+    --font-ui: "Instrument Sans", system-ui, sans-serif;
+    --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
+    --step-0:  clamp(0.94rem, 0.91rem + 0.15vw, 1.02rem);
+    --step-1:  clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+    --step-2:  clamp(1.5rem, 1.3rem + 1vw, 2.1rem);
+
+    /* Space, radius, motion */
+    --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+    --space-4: 1rem;    --space-5: 1.5rem; --space-6: 2.25rem;
+    --radius-s: 6px;    --radius-m: 10px;
+    --shadow-pop: 0 12px 32px -8px color-mix(in oklab, var(--ink-900) 35%, transparent);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur: 180ms;
+
+    --sidebar-w: 15.5rem;
+    --topbar-h: 3.5rem;
+  }
+
+  /* Manual override set by useTheme() */
+  :root[data-theme="light"] { color-scheme: light; }
+  :root[data-theme="dark"]  { color-scheme: dark; }
+}
