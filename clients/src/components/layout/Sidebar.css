@@ -1,0 +1,57 @@
+@layer components {
+  .sidebar {
+    grid-area: side;
+    position: sticky; inset-block-start: 0; block-size: 100dvh;
+    display: flex; flex-direction: column; gap: var(--space-5);
+    padding: var(--space-4) var(--space-3);
+    background: var(--ink-900); color: #dbe7ee;
+    border-inline-end: 1px solid color-mix(in oklab, #fff 8%, transparent);
+
+    .sidebar__brand {
+      display: flex; align-items: center; gap: var(--space-3); padding-inline: var(--space-2);
+      block-size: calc(var(--topbar-h) - var(--space-4));
+      strong { display: block; font-family: var(--font-display); font-size: var(--step-1); color: #fff; line-height: 1.1; }
+      small  { color: #8fa9b8; font-size: var(--step--1); }
+    }
+    /* Leaf mark drawn in CSS: two quarter-rounded corners */
+    .sidebar__mark {
+      inline-size: 1.7rem; block-size: 1.7rem; background: var(--leaf-500);
+      border-radius: 0 100% 0 100%; rotate: -8deg;
+    }
+
+    ul { list-style: none; padding: 0; display: grid; gap: var(--space-1); }
+
+    .sidebar__link {
+      position: relative; display: flex; align-items: center; gap: var(--space-3);
+      padding: 0.6rem var(--space-3); border-radius: var(--radius-s);
+      color: inherit; text-decoration: none; font-weight: 500;
+      transition: background var(--dur), color var(--dur);
+
+      &:hover { background: color-mix(in oklab, #fff 8%, transparent); color: #fff; }
+
+      /* The one memorable detail: a bookmark ribbon hangs off the active page */
+      &.active {
+        background: color-mix(in oklab, #fff 11%, transparent); color: #fff;
+        &::after {
+          content: ""; position: absolute; inset-block-start: 0; inset-inline-end: var(--space-3);
+          inline-size: 0.7rem; block-size: 1.15rem; background: var(--amber-500);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
+          animation: ribbon-drop 280ms var(--ease-out);
+        }
+      }
+    }
+  }
+
+  @keyframes ribbon-drop { from { translate: 0 -100%; } }
+
+  @media (max-width: 52rem) {
+    .sidebar {
+      position: fixed; inset-block: 0; inset-inline-start: 0; z-index: 50;
+      inline-size: min(var(--sidebar-w), 85vw);
+      translate: -100% 0; transition: translate 240ms var(--ease-out);
+      visibility: hidden; /* removes off-screen links from tab order */
+      transition-property: translate, visibility; transition-behavior: allow-discrete;
+    }
+    .shell[data-nav-open] .sidebar { translate: 0; visibility: visible; }
+  }
+}

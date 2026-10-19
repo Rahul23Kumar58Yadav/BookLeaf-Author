@@ -1,0 +1,40 @@
+@layer components {
+  .shell {
+    display: grid;
+    grid-template: "side top" var(--topbar-h) "side main" 1fr / var(--sidebar-w) 1fr;
+    min-block-size: 100dvh;
+
+    .shell__main {
+      grid-area: main;
+      container: main / inline-size; /* children (tables, cards) adapt to content width, not viewport */
+      padding: var(--space-5);
+      min-inline-size: 0;            /* lets wide tables scroll instead of blowing out the grid */
+      outline: none;
+    }
+    .shell__scrim { display: none; }
+  }
+
+  .skip-link {
+    position: fixed; inset-block-start: var(--space-2); inset-inline-start: var(--space-2); z-index: 100;
+    padding: var(--space-2) var(--space-4); border-radius: var(--radius-s);
+    background: var(--ink-900); color: #fff; font-weight: 600; text-decoration: none;
+    translate: 0 -200%;
+    &:focus { translate: 0; }
+  }
+
+  /* Mobile: sidebar becomes an off-canvas drawer */
+  @media (max-width: 52rem) {
+    .shell {
+      grid-template: "top" var(--topbar-h) "main" 1fr / 1fr;
+
+      .shell__main { padding: var(--space-4); }
+
+      .shell__scrim {
+        display: block; position: fixed; inset: 0; z-index: 40; border: 0;
+        background: color-mix(in oklab, var(--ink-900) 50%, transparent);
+        opacity: 0; pointer-events: none; transition: opacity var(--dur);
+      }
+      &[data-nav-open] .shell__scrim { opacity: 1; pointer-events: auto; }
+    }
+  }
+}
