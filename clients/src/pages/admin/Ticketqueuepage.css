@@ -1,0 +1,28 @@
+@layer components {
+  .queue-page {
+    display: grid; gap: var(--space-4);
+
+    .queue-page__stats {
+      display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-5);
+      .live { margin-inline-start: auto; }
+    }
+    .stat {
+      font-size: var(--step--1); color: var(--text-dim);
+      strong { font-family: var(--font-display); font-size: var(--step-1); color: var(--text); font-variant-numeric: tabular-nums; }
+      &[data-tone="danger"] strong { color: var(--danger); }
+    }
+
+    .queue-page__filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-3); }
+    .filter {
+      display: grid; gap: 2px; font-size: var(--step--1);
+      span { color: var(--text-dim); font-weight: 600; }
+      :is(select, input) {
+        padding: 0.4em 0.6em; min-block-size: 2.1rem; background: var(--surface);
+        border: 1px solid var(--border); border-radius: var(--radius-s);
+      }
+    }
+
+    /* While a filter change reloads, keep the old rows visible but dimmed instead of flashing a spinner */
+    .queue-page__results { transition: opacity var(--dur); &[data-loading] { opacity: 0.55; } }
+  }
+}

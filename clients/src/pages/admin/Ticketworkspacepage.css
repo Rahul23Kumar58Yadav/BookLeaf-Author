@@ -1,0 +1,33 @@
+@layer components {
+  .ws {
+    display: grid; gap: var(--space-4);
+
+    .ws__back { color: var(--text-dim); text-decoration: none; inline-size: fit-content; &:hover { color: var(--text); } }
+
+    .ws__head {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--space-3);
+      h2 { overflow-wrap: anywhere; }
+    }
+    .ws__meta { font-size: var(--step--1); color: var(--text-dim); }
+    .ws__badges { display: flex; gap: var(--space-2); }
+
+    .ws__grid { display: grid; gap: var(--space-5); align-items: start; }
+    .ws__main { display: grid; gap: var(--space-3); min-inline-size: 0; }
+    .ws__side { display: grid; gap: var(--space-4); }
+
+    .ws__banner {
+      padding: var(--space-3) var(--space-4); border-radius: var(--radius-s); font-size: var(--step--1);
+      color: var(--danger); background: color-mix(in oklab, var(--danger) 10%, transparent);
+      border: 1px solid color-mix(in oklab, var(--danger) 30%, transparent);
+    }
+
+    /* The thread's own max-width suits the author view; the admin column should use the space */
+    .thread { max-inline-size: none; }
+  }
+
+  /* Two columns once the content area is wide enough; settings stay in view while you write */
+  @container main (min-width: 64rem) {
+    .ws .ws__grid { grid-template-columns: minmax(0, 1fr) 22rem; }
+    .ws .ws__side { position: sticky; inset-block-start: calc(var(--topbar-h) + var(--space-4)); max-block-size: calc(100dvh - var(--topbar-h) - 2 * var(--space-4)); overflow-y: auto; }
+  }
+}
