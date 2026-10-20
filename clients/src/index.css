@@ -1,0 +1,5 @@
+/* Single source of truth for cascade order: later layers win, regardless of specificity. */
+@layer reset, tokens, base, components, utilities;
+
+@import "./styles/tokens.css";
+@import "./styles/base.css";
